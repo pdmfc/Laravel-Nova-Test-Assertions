@@ -2,15 +2,15 @@
 
 namespace Pdmfc\NovaTestAssertions\Tests;
 
-use Illuminate\Foundation\Application;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Laravel\Nova\Nova;
 use Mockery;
-use Orchestra\Testbench\TestCase as Orchestra;
-use Pdmfc\NovaTestAssertions\Tests\Fixtures\UserResource;
-use Pdmfc\NovaTestAssertions\Traits\NovaTestAssertions;
-use Laravel\Nova\NovaCoreServiceProvider;
+use Laravel\Nova\Nova;
 use Laravel\Nova\NovaServiceProvider;
+use Illuminate\Foundation\Application;
+use Laravel\Nova\NovaCoreServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Pdmfc\NovaTestAssertions\Traits\NovaTestAssertions;
+use Pdmfc\NovaTestAssertions\Tests\Fixtures\UserResource;
 
 abstract class TestCase extends Orchestra
 {

@@ -57,4 +57,13 @@ class AssertionsTest extends TestCase
 
         $this->assertEquals('Foo', $user->fresh()->name);
     }
+
+    /** @test */
+    public function asserts_total_resources_available_on_index_view(): void
+    {
+        factory(User::class, 5)->create();
+        $actual = $this->resourceCount(UserResource::class);
+
+        $this->assertEquals(6, $actual);
+    }
 }

@@ -53,4 +53,17 @@ trait NovaTestAssertions
             'resources' => implode(',', Arr::wrap($id)),
         ]));
     }
+
+    /**
+     * Fetches the total count of available instances for the given resource.
+     *
+     * @param string $resource
+     * @return int
+     */
+    public function resourceCount(string $resource): int
+    {
+        $endpoint = '/nova-api/' . $resource::uriKey() . '/count';
+
+        return (new NovaTestResponse($this->get($endpoint)))->original['count'];
+    }
 }
