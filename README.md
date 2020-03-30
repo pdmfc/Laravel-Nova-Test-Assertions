@@ -1,7 +1,7 @@
 ## Installation
 
 ```bash
-composer require pdmfc/laravel-nova-test-assertions --dev // Not available yet...
+composer require pdmfc/laravel-nova-test-assertions --dev
 ```
 
 Add the `NovaTestAssertions` trait to your tests or to the `TestCase`:
@@ -34,7 +34,7 @@ class AssertionsTest extends TestCase
     public function asserts_total_resources_available_on_index_view(): void
     {
         factory(User::class, 5)->create();
-        
+
         $actual = $this->resourceCount(UserResource::class);
 
         $this->assertEquals(6, $actual);
