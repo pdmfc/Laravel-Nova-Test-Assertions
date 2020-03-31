@@ -51,3 +51,8 @@ class AssertionsTest extends TestCase
     }
 }
 ```
+
+# Credits:
+
+
+Inspired by: [dillingham/nova-assertions](https://github.com/dillingham/nova-assertions)
