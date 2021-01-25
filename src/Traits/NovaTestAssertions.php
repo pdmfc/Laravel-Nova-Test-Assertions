@@ -8,6 +8,11 @@ use Pdmfc\NovaTestAssertions\Responses\NovaTestResponse;
 trait NovaTestAssertions
 {
     /**
+     * @var string
+     */
+    protected $baseNovaUri = '/nova-api';
+
+    /**
      * Visit the given resource endpoint.
      *
      * @param string $class
@@ -16,7 +21,7 @@ trait NovaTestAssertions
      */
     public function resourceDetail(string $class, int $id): NovaTestResponse
     {
-        return new NovaTestResponse($this->get('/nova-api/' . $class::uriKey() . '/' . $id));
+        return new NovaTestResponse($this->get($this->resourceUri($class) . '/' . $id));
     }
 
     /**
@@ -26,9 +31,9 @@ trait NovaTestAssertions
      * @param int|null $id
      * @return NovaTestResponse
      */
-    public function resourceActions($class, $id = null): NovaTestResponse
+    public function resourceActions(string $class, $id = null): NovaTestResponse
     {
-        $endpoint = '/nova-api/' . $class::uriKey() . '/actions';
+        $endpoint = $this->resourceUri($class)  . '/actions';
 
         if ($id) {
             $endpoint .= '?resourceId=' . $id;
@@ -47,7 +52,7 @@ trait NovaTestAssertions
      */
     public function runAction(string $action, string $resource, $id): NovaTestResponse
     {
-        $endpoint = '/nova-api/' . $resource::uriKey() . '/action?action=' . (new $action())->uriKey();
+        $endpoint = $this->resourceUri($resource) . '/action?action=' . (new $action())->uriKey();
 
         return new NovaTestResponse($this->postJson($endpoint, [
             'resources' => implode(',', Arr::wrap($id)),
@@ -62,8 +67,19 @@ trait NovaTestAssertions
      */
     public function resourceCount(string $resource): int
     {
-        $endpoint = '/nova-api/' . $resource::uriKey() . '/count';
+        $endpoint = $this->resourceUri($resource)  . '/count';
 
         return (new NovaTestResponse($this->get($endpoint)))->original['count'];
+    }
+
+    /**
+     * The Nova Resource base URI.
+     *
+     * @param $resource
+     * @return string
+     */
+    protected function resourceUri($resource): string
+    {
+        return $this->baseNovaUri . '/' . $resource::uriKey();
     }
 }

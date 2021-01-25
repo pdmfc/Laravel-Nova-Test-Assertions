@@ -50,9 +50,10 @@ class NovaTestResponse extends TestResponse
      */
     public function getFieldsClasses(): array
     {
-        return collect($this->original['resource']['fields'])->map(static function ($field) {
-            return get_class($field);
-        })->toArray();
+        return collect($this->original['resource']['fields'])
+            ->map(static function ($field) {
+                return get_class($field);
+            })->toArray();
     }
 
     /**
@@ -62,8 +63,9 @@ class NovaTestResponse extends TestResponse
      */
     public function getActionsClasses(): array
     {
-        return collect($this->original['actions'])->map(static function ($action) {
-            return get_class($action);
-        })->toArray();
+        return collect($this->original['actions'])
+            ->map(static function ($action) {
+                return get_class($action);
+            })->toArray();
     }
 }
