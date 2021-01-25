@@ -1,3 +1,12 @@
+# Laravel Nova Test Assertions
+A collection of test assertions and helpers to assist you on testing Laravel Nova applications. 
+
+![Packagist Downloads](https://img.shields.io/packagist/dt/pdmfc/laravel-nova-test-assertions?style=for-the-badge)
+![Packagist Version](https://img.shields.io/packagist/v/pdmfc/laravel-nova-test-assertions?label=version&style=for-the-badge)
+![Packagist License](https://img.shields.io/packagist/l/pdmfc/laravel-nova-test-assertions?color=blue&style=for-the-badge)
+
+___
+
 ## Installation
 
 ```bash
