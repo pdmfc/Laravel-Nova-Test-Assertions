@@ -21,7 +21,7 @@ trait NovaTestAssertions
      */
     public function resourceDetail(string $class, int $id): NovaTestResponse
     {
-        return new NovaTestResponse($this->get($this->resourceUri($class) . '/' . $id));
+        return new NovaTestResponse($this->getJson($this->baseResourceUri($class) . '/' . $id));
     }
 
     /**
@@ -33,13 +33,13 @@ trait NovaTestAssertions
      */
     public function resourceActions(string $class, $id = null): NovaTestResponse
     {
-        $endpoint = $this->resourceUri($class)  . '/actions';
+        $endpoint = $this->baseResourceUri($class)  . '/actions';
 
         if ($id) {
             $endpoint .= '?resourceId=' . $id;
         }
 
-        return new NovaTestResponse($this->get($endpoint));
+        return new NovaTestResponse($this->getJson($endpoint));
     }
 
     /**
@@ -52,7 +52,7 @@ trait NovaTestAssertions
      */
     public function runAction(string $action, string $resource, $id): NovaTestResponse
     {
-        $endpoint = $this->resourceUri($resource) . '/action?action=' . (new $action())->uriKey();
+        $endpoint = $this->baseResourceUri($resource) . '/action?action=' . (new $action())->uriKey();
 
         return new NovaTestResponse($this->postJson($endpoint, [
             'resources' => implode(',', Arr::wrap($id)),
@@ -67,9 +67,9 @@ trait NovaTestAssertions
      */
     public function resourceCount(string $resource): int
     {
-        $endpoint = $this->resourceUri($resource)  . '/count';
+        $endpoint = $this->baseResourceUri($resource)  . '/count';
 
-        return (new NovaTestResponse($this->get($endpoint)))->original['count'];
+        return (new NovaTestResponse($this->getJson($endpoint)))->original['count'];
     }
 
     /**
@@ -78,7 +78,7 @@ trait NovaTestAssertions
      * @param $resource
      * @return string
      */
-    protected function resourceUri($resource): string
+    protected function baseResourceUri($resource): string
     {
         return $this->baseNovaUri . '/' . $resource::uriKey();
     }

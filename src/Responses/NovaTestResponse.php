@@ -2,8 +2,8 @@
 
 namespace Pdmfc\NovaTestAssertions\Responses;
 
-use Illuminate\Foundation\Testing\Assert;
-use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Testing\Assert;
+use Illuminate\Testing\TestResponse;
 
 class NovaTestResponse extends TestResponse
 {

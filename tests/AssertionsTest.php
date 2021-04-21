@@ -17,7 +17,7 @@ class AssertionsTest extends TestCase
     }
 
     /** @test */
-    public function asserts_detail_view_contains_a_given_field(): void
+    public function asserts_detail_view_contains_a_given_field_class(): void
     {
         $response = $this->resourceDetail(UserResource::class, 1);
 
@@ -55,7 +55,7 @@ class AssertionsTest extends TestCase
 
         $this->runAction(FooAction::class, UserResource::class, $user->id);
 
-        $this->assertEquals('Foo', $user->fresh()->name);
+        self::assertEquals('Foo', $user->fresh()->name);
     }
 
     /** @test */
@@ -65,6 +65,6 @@ class AssertionsTest extends TestCase
 
         $actual = $this->resourceCount(UserResource::class);
 
-        $this->assertEquals(6, $actual);
+        self::assertEquals(6, $actual);
     }
 }
